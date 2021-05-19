@@ -17,9 +17,6 @@
     ],
     [
       "build-plugin-webpack5"
-      // {
-      //   "remoteRuntime": true
-      // }
     ]
   ]
 }
