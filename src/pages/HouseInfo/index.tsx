@@ -10,13 +10,7 @@ const FusionDialogTable = () => {
     <ResponsiveGrid gap={20}>
       <Cell colSpan={12}>
         <PageHeader
-          title="弹窗表格"
-          breadcrumbs={[
-            { name: '列表页面' },
-            { name: '表格列表' },
-            { name: '弹窗表格' },
-          ]}
-          description="弹窗表格弹窗表格弹窗表格弹窗表格弹窗表格弹窗表格弹窗表格弹窗表格弹窗表格"
+          title="房屋资料"
         />
       </Cell>
 
