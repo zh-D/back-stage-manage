@@ -16,10 +16,10 @@
       }
     ],
     [
-      "build-plugin-webpack5",
-      {
-        "remoteRuntime": true
-      }
+      "build-plugin-webpack5"
+      // {
+      //   "remoteRuntime": true
+      // }
     ]
   ]
 }
