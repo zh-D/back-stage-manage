@@ -9,37 +9,9 @@ import { ActionType, OperaitionProps } from './Operation';
 
 import styles from './index.module.scss';
 
-const getTableData = (
-  { current, pageSize }: { current: number; pageSize: number },
-  formData: { status: 'normal' | 'empty' | 'exception' },
-): Promise<any> => {
-  if (!formData.status || formData.status === 'normal') {
-    let query = `page=${current}&size=${pageSize}`;
-    Object.entries(formData).forEach(([key, value]) => {
-      if (value) {
-        query += `&${key}=${value}`;
-      }
-    });
-    return fetch(`https://randomuser.me/api?results=${pageSize}&${query}`)
-      .then(res => res.json())
-      .then(res => ({
-        total: 55,
-        list: res.results.slice(0, 10),
-      }));
-  }
-  if (formData.status === 'empty') {
-    return Promise.resolve([]);
-  }
-  if (formData.status === 'exception') {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        reject(new Error('data exception'));
-      }, 1000);
-    });
-  }
+import { useRequest } from 'ice';
+import houseService from '../../services/houseInfo';
 
-  return Promise.resolve([]);
-};
 
 interface ColumnWidth {
   name: number;
@@ -71,6 +43,16 @@ const DialogTable: React.FC = () => {
     actionType: 'preview',
     actionVisible: false,
   });
+  const { request: getHouseInfo } = useRequest(houseService.getHouseInfo);
+  const { request: deleteHouseInfo } = useRequest(houseService.deleteHouseInfo);
+  const { request: editHouseInfo } = useRequest(houseService.editHouseInfo);
+
+  const getTableData = (
+    formData: { status: 'normal' | 'empty' | 'exception' },
+  ): Promise<any> => {
+    return getHouseInfo(formData)
+  };
+  
   const { actionVisible, columnWidth, optCol } = state;
   const field = Field.useField([]);
   const { paginationProps, tableProps, search, error, refresh } = useFusionTable(getTableData, {
@@ -98,26 +80,32 @@ const DialogTable: React.FC = () => {
     setState({ actionVisible: false });
   }, [setState]);
 
-  const handleOk = useCallback((): void => {
+  const handleOk = useCallback(async (dataSource): Promise<void> => {
     const { actionType } = state;
     if (actionType === 'preview') {
       handleCancel();
       return;
     }
-    Message.success(actionType === 'add' ? '添加成功!' : '编辑成功!');
+
+    if (actionType === 'edit') {
+      editHouseInfo(dataSource)
+      Message.success('编辑成功!');
+    }
+    
     reset();
     handleCancel();
   }, [handleCancel, reset, state]);
 
-  const handleDelete = useCallback((data: any) => {
-    if (!data) {
+  const handleDelete = useCallback((dataSource: any) => {
+    if (!dataSource) {
       return;
     }
     Dialog.confirm({
       title: '删除提醒',
-      content: `确定删除 ${data.name.last} 吗`,
-      onOk() {
-        Message.success(`${data.name.last} 删除成功!`);
+      content: `确定删除 ${dataSource.name} 吗`,
+      async onOk() {
+        deleteHouseInfo(dataSource.roomid);        
+        Message.success(`${dataSource.name} 删除成功!`);
         reset();
       },
     });
@@ -164,10 +152,10 @@ const DialogTable: React.FC = () => {
             emptyContent={error ? <ExceptionBlock onRefresh={refresh} /> : <EmptyBlock />}
             primaryKey="email"
           >
-            <Table.Column title="name" dataIndex="name.last" resizable width={columnWidth.name} />
-            <Table.Column title="email" dataIndex="email" resizable width={columnWidth.email} />
-            <Table.Column title="phone" dataIndex="phone" resizable width={columnWidth.phone} />
-            <Table.Column title="gender" dataIndex="gender" resizable width={columnWidth.gender} />
+            <Table.Column title="房主" dataIndex="name" resizable width={columnWidth.name} />
+            <Table.Column title="房间号" dataIndex="roomid" resizable width={columnWidth.email} />
+            <Table.Column title="状态" dataIndex="state" resizable width={columnWidth.phone} />
+            <Table.Column title="电话" dataIndex="phone" resizable width={columnWidth.gender} />
             <Table.Column
               title="操作"
               resizable

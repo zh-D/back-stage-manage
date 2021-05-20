@@ -34,10 +34,10 @@ const Operation: React.ForwardRefRenderFunction<OperationRef, OperaitionProps> =
     field.reset();
     if (dataSource) {
       const newValues = {
-        name: dataSource.name.last,
-        email: dataSource.email,
+        name: dataSource.name,
+        roomid: dataSource.roomid,
+        state: dataSource.state,
         phone: dataSource.phone,
-        gender: dataSource.gender,
       };
       field.setValues(newValues);
     }
@@ -70,7 +70,7 @@ const Operation: React.ForwardRefRenderFunction<OperationRef, OperaitionProps> =
         {...formItemLayout}
       >
         <FormItem
-          label="姓名:"
+          label="房主:"
           required={!isPreview}
           requiredMessage="必填"
         >
@@ -79,13 +79,23 @@ const Operation: React.ForwardRefRenderFunction<OperationRef, OperaitionProps> =
           />
         </FormItem>
         <FormItem
-          label="邮箱:"
-          format="email"
+          label="房间号(不可修改):"
           required={!isPreview}
           requiredMessage="必填"
         >
           <Input
-            name="email"
+            {...field.init('roomid')}
+            value = {dataSource.roomid}
+            style = {{backgroundColor:"#ababab"}}
+          />
+        </FormItem>
+        <FormItem
+          label="状态:"
+          required={!isPreview}
+          requiredMessage="必填"
+        >
+          <Input
+            {...field.init('state')}
           />
         </FormItem>
         <FormItem
@@ -95,20 +105,7 @@ const Operation: React.ForwardRefRenderFunction<OperationRef, OperaitionProps> =
           requiredMessage="必填"
         >
           <Input
-            name="phone"
-          />
-        </FormItem>
-        <FormItem
-          label="性别:"
-          required={!isPreview}
-          requiredMessage="必填"
-        >
-          <Select
-            name="gender"
-            dataSource={[
-              { value: 'male', label: '男' },
-              { value: 'female', label: '女' },
-            ]}
+            {...field.init('phone')}
           />
         </FormItem>
       </Form>

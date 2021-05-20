@@ -1,24 +1,24 @@
 import React from 'react';
 import { ResponsiveGrid } from '@alifd/next';
 import PageHeader from '@/components/PageHeader';
-import DialogTable from './components/HouseInfoTable';
+import BasicForm from './components/BasicForm';
 
 const { Cell } = ResponsiveGrid;
 
-const FusionDialogTable = () => {
+const FormBasic = () => {
   return (
     <ResponsiveGrid gap={20}>
       <Cell colSpan={12}>
         <PageHeader
-          title="房屋资料"
+          title="单列基础表单"
         />
       </Cell>
 
       <Cell colSpan={12}>
-        <DialogTable />
+        <BasicForm />
       </Cell>
     </ResponsiveGrid>
   );
 };
 
-export default FusionDialogTable;
+export default FormBasic;
