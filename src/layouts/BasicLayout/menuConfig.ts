@@ -2,9 +2,19 @@ const headerMenuConfig = [];
 
 const asideMenuConfig = [
   {
-    name: '房屋资料显示',
-    path: '/houseinfo',
+    name: '房屋资料',
+    path: '/',
     icon: 'chart-pie',
+    children: [
+      {
+        name: '房屋资料管理',
+        path: '/house/houseinfo',
+      },
+      {
+        name: '添加房屋资料',
+        path: '/house/addhouseinfo',
+      },
+    ]
   },
   {
     name: '房屋维修管理',

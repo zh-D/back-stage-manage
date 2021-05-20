@@ -4,6 +4,7 @@ import Login from '@/pages/Login';
 import Register from '@/pages/Register';
 import BasicLayout from '@/layouts/BasicLayout';
 import HouseInfo from '@/pages/HouseInfo';
+import AddHouseInfo from '@/pages/HouseInfo/AddHouseInfo';
 
 const routerConfig: IRouterConfig[] = [
   {
@@ -11,12 +12,16 @@ const routerConfig: IRouterConfig[] = [
     component: BasicLayout,
     children: [
       {
-        path: '/houseinfo',
+        path: '/house/houseinfo',
         component: HouseInfo,
       },
       {
+        path: '/house/addhouseinfo',
+        component: AddHouseInfo,
+      },
+      {
         path: '/',
-        redirect: '/houseinfo',
+        redirect: '/house/houseinfo',
       },
     ],
   },
