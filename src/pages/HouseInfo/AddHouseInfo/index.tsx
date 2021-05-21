@@ -10,7 +10,7 @@ const FormBasic = () => {
     <ResponsiveGrid gap={20}>
       <Cell colSpan={12}>
         <PageHeader
-          title="单列基础表单"
+          title="添加房屋资料"
         />
       </Cell>
 

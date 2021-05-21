@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Input, Form, Box, Button, Card, DatePicker, Message, Radio, Upload } from '@alifd/next';
+import { Input, Form, Box, Button, Card, DatePicker, Message, Radio, Upload, Field } from '@alifd/next';
 
 import { useRequest } from 'ice';
 import houseService from '../../../services/houseInfo';
@@ -39,8 +39,13 @@ const DEFAULT_DATA: DataSource = {
 const BasicForm: React.SFC<BasicFormProps> = (props): JSX.Element => {
   const { request:addRequest } = useRequest(houseService.addHouseInfo)
   const DEFAULT_ON_SUBMIT = async (values: BasicFormProps, errors: []): void => {
-    addRequest(values)
-    document.getElementById("reset")?.click()
+    if (errors) {
+      console.log('errors', errors);
+      return;
+    }
+    addRequest(values);
+    // document.getElementById("reset")?.click()
+    setValue({name:'',roomid:'',phone:''})
     Message.success('提交成功');
   };
   const {

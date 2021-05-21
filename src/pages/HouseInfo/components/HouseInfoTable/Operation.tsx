@@ -1,5 +1,5 @@
 import React, { useEffect, useImperativeHandle } from 'react';
-import { Select, Form, Field, Input } from '@alifd/next';
+import { Select, Form, Field, Input, Message } from '@alifd/next';
 
 const FormItem = Form.Item;
 
@@ -48,9 +48,17 @@ const Operation: React.ForwardRefRenderFunction<OperationRef, OperaitionProps> =
       return {
         getValues(callback: (vals: Record<string, unknown>) => void) {
           field.validate((errors, values): void => {
-            if (errors) {
-              return;
+            const { name, phone } = values
+            if (!name) {
+              Message.error("姓名不能为空！");
+              return
             }
+            if (!phone) {
+              Message.error("电话不能为空！");
+              return
+            }
+            console.log(values);
+            
             callback(values);
           });
         },
@@ -71,11 +79,12 @@ const Operation: React.ForwardRefRenderFunction<OperationRef, OperaitionProps> =
       >
         <FormItem
           label="房主:"
-          required={!isPreview}
+          required
           requiredMessage="必填"
         >
           <Input
             {...field.init('name')}
+            placeholder="请输入姓名."
           />
         </FormItem>
         <FormItem
@@ -94,8 +103,12 @@ const Operation: React.ForwardRefRenderFunction<OperationRef, OperaitionProps> =
           required={!isPreview}
           requiredMessage="必填"
         >
-          <Input
-            {...field.init('state')}
+          <Select
+            name="state"
+            dataSource={[
+              { value: '已购买', label: '已购买' },
+              { value: '租客', label: '租客' },
+            ]}
           />
         </FormItem>
         <FormItem

@@ -11,10 +11,10 @@ const getDialogTitle = (actionType: ActionType): string => {
       return '添加员工';
 
     case 'edit':
-      return '编辑员工';
+      return '编辑信息';
 
     case 'preview':
-      return '预览员工';
+      return '预览信息';
   }
 };
 
