@@ -10,7 +10,7 @@ import { ActionType, OperaitionProps } from './Operation';
 import styles from './index.module.scss';
 
 import { useRequest } from 'ice';
-import houseService from '../../services/houseInfo';
+import houseService from '../../../services/houseInfo';
 
 
 interface ColumnWidth {

@@ -88,7 +88,7 @@ const Operation: React.ForwardRefRenderFunction<OperationRef, OperaitionProps> =
           />
         </FormItem>
         <FormItem
-          label="房间号(不可修改):"
+          label="房间号:"
           required={!isPreview}
           requiredMessage="必填"
         >

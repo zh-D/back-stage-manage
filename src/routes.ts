@@ -3,8 +3,8 @@ import UserLayout from '@/layouts/UserLayout';
 import Login from '@/pages/Login';
 import Register from '@/pages/Register';
 import BasicLayout from '@/layouts/BasicLayout';
-import HouseInfo from '@/pages/HouseInfo';
-import AddHouseInfo from '@/pages/HouseInfo/AddHouseInfo';
+import HouseInfo from '@/pages/House/EditHouseInfo';
+import AddHouseInfo from '@/pages/House/AddHouseInfo';
 
 const routerConfig: IRouterConfig[] = [
   {
