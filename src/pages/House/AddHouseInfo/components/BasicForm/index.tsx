@@ -19,7 +19,7 @@ export interface DataSource {
   name?: string;
   roomid?: string;
   // date?: Moment[];
-  status?: string;
+  state?: string;
   // pic?: UploadProps[];
   phone?: string;
 }
@@ -31,7 +31,7 @@ export interface BasicFormProps {
 }
 
 const DEFAULT_DATA: DataSource = {
-  status: '出租',
+  state: '出租',
 };
 
 
@@ -80,7 +80,7 @@ const BasicForm: React.SFC<BasicFormProps> = (props): JSX.Element => {
           </FormItem>
 
           <FormItem {...formItemLayout} label="状态：" >
-            <Radio.Group name="status" aria-labelledby="authority of project">
+            <Radio.Group name="state" aria-labelledby="authority of project">
               <Radio id="private" value="出租">出租</Radio>
               <Radio id="internal" value="业主">业主</Radio>
             </Radio.Group>

@@ -10,7 +10,7 @@ export default {
               "!"
             ],
             "roomid|+1":100,
-            "state|+1": [0,1],
+            "state|+1": ["业主", "租客"],
             "phone": /[0-9]+11/
           }
         ]

@@ -34,9 +34,9 @@ export default {
   async getHouseInfo(formData) {
     if (!formData.status || formData.status === 'normal') {
       const data = await request(`/api/gethouseinfo`)
-      data.map(item => {
-        item.state = item.state === 0 ? "已购买" : "租客";
-      })
+      // data.map(item => {
+      //   item.state = item.state === 0 ? "业主" : "租客";
+      // })
 
       return ({
         total: data.length,

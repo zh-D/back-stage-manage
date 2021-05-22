@@ -106,7 +106,7 @@ const Operation: React.ForwardRefRenderFunction<OperationRef, OperaitionProps> =
           <Select
             name="state"
             dataSource={[
-              { value: '已购买', label: '已购买' },
+              { value: '业主', label: '业主' },
               { value: '租客', label: '租客' },
             ]}
           />
