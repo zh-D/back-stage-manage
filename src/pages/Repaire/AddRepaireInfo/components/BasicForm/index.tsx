@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Input, Form, Box, Button, Card, DatePicker, Message, Radio, Upload, Field } from '@alifd/next';
 
 import { useRequest } from 'ice';
-import houseService from '../../../services/houseInfo';
+import houseService from '../../../services/repaireInfo';
 
 // import { UploadProps } from '@alifd/next/types/upload';
 // import { Moment } from 'moment';
@@ -37,7 +37,7 @@ const DEFAULT_DATA: DataSource = {
 
 
 const BasicForm: React.SFC<BasicFormProps> = (props): JSX.Element => {
-  const { request:addRequest } = useRequest(houseService.addHouseInfo)
+  const { request:addRequest } = useRequest(houseService.addRepaireInfo)
   const DEFAULT_ON_SUBMIT = async (values: BasicFormProps, errors: []): void => {
     if (errors) {
       console.log('errors', errors);
@@ -45,7 +45,7 @@ const BasicForm: React.SFC<BasicFormProps> = (props): JSX.Element => {
     }
     addRequest(values);
     // document.getElementById("reset")?.click()
-    setValue({name:'',roomid:'',phone:''})
+    setValue({wxid: "", wxryname: "", roomid: "", wxsj: "", wxwp: "", wxje: ""})
     Message.success('提交成功');
   };
   const {
@@ -71,23 +71,28 @@ const BasicForm: React.SFC<BasicFormProps> = (props): JSX.Element => {
           labelAlign="top"
           onChange={formChange}
         >
-          <FormItem {...formItemLayout} label="房主名称：" required requiredMessage="必填">
-            <Input placeholder="请输入房主名称" name="name" />
+          <FormItem {...formItemLayout} label="维修员职工号：" required requiredMessage="必填">
+            <Input placeholder="请输入维修员职工号" name="wxid" />
           </FormItem>
 
-          <FormItem {...formItemLayout} label="房间号：" required requiredMessage="必填">
-            <Input placeholder="请输入房间号" name="roomid" />
+          <FormItem {...formItemLayout} label="维修员姓名：" required requiredMessage="必填">
+            <Input placeholder="请输入维修员姓名" name="wxryname" />
           </FormItem>
 
-          <FormItem {...formItemLayout} label="状态：" >
-            <Radio.Group name="state" aria-labelledby="authority of project">
-              <Radio id="private" value="出租">出租</Radio>
-              <Radio id="internal" value="业主">业主</Radio>
-            </Radio.Group>
+          <FormItem {...formItemLayout} label="维修房间号：" >
+            <Input placeholder="请输入维修房间号" name="roomid" />
+          </FormItem>
+          
+          <FormItem {...formItemLayout} label="维修时间：" >
+            <Input placeholder="请输入维修时间" name="wxsj" />
           </FormItem>
 
-          <FormItem {...formItemLayout} label="手机号：" >
-            <Input placeholder="请输入手机号" name="phone" />
+          <FormItem {...formItemLayout} label="维修物品：" >
+            <Input placeholder="请输入维修物品" name="wxwp" />
+          </FormItem>
+
+          <FormItem {...formItemLayout} label="维修金额：" >
+            <Input placeholder="请输入维修金额" name="wxje" />
           </FormItem>
 
           <FormItem colSpan={12}>
