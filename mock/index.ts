@@ -85,5 +85,47 @@ export default {
     res.send(null)
     
   },
-// repaire interface end    
+// repaire interface end  
+
+  // greening interface start
+  '/api/getgreeninginfo': (req, res) => {
+    const list = Mock.mock({
+      "data|5-10": [
+        {
+          "lhryid|+1": 10,
+          "lhryname|+1": [
+            "绿化员小黄",
+            "绿化员小聪",
+          ],
+          "ldh|+1": 500,
+          "lhsj|+1": [new Date().getDate(), new Date().getDate() + 1, new Date().getDate() + 2],
+        }
+      ]
+    })
+    res.send(list.data);
+  },
+  '/api/deletegreeninginfo/:id': (req,res) => {
+    const { id } = req.params;
+    console.log(req.params);
+    console.log(id);
+    console.log(req.method);
+    res.send(id)
+    
+  },
+
+  '/api/editgreeninginfo': async (req,res) => {
+    const data =  req.body;
+    console.log(data);
+    console.log(req.method);
+    res.send(String(data.roomid))
+    
+  },
+  '/api/addgreeninginfo': async (req,res) => {
+    const data =  req.body;
+    console.log(data);
+    console.log(req.method);
+    res.send(null)
+    
+  },
+// greening interface end    
   };

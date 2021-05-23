@@ -10,7 +10,7 @@ import { ActionType, OperaitionProps } from './Operation';
 import styles from './index.module.scss';
 
 import { useRequest } from 'ice';
-import houseService from '../../../services/houseInfo';
+import greeningService from '../../../services/greening';
 
 
 interface ColumnWidth {
@@ -43,14 +43,14 @@ const DialogTable: React.FC = () => {
     actionType: 'preview',
     actionVisible: false,
   });
-  const { request: getHouseInfo } = useRequest(houseService.getHouseInfo);
-  const { request: deleteHouseInfo } = useRequest(houseService.deleteHouseInfo);
-  const { request: editHouseInfo } = useRequest(houseService.editHouseInfo);
+  const { request: getGreeningInfo } = useRequest(greeningService.getGreeningInfo);
+  const { request: deleteGreeningInfo } = useRequest(greeningService.deleteGreeningInfo);
+  const { request: editGreeningInfo } = useRequest(greeningService.editGreeningInfo);
 
   const getTableData = (
     formData: { status: 'normal' | 'empty' | 'exception' },
   ): Promise<any> => {
-    return getHouseInfo(formData)
+    return getGreeningInfo(formData)
   };
   
   const { actionVisible, columnWidth, optCol } = state;
@@ -88,7 +88,7 @@ const DialogTable: React.FC = () => {
     }
 
     if (actionType === 'edit') {
-      editHouseInfo(dataSource)
+      editGreeningInfo(dataSource)
       Message.success('编辑成功!');
     }
     
@@ -102,10 +102,10 @@ const DialogTable: React.FC = () => {
     }
     Dialog.confirm({
       title: '删除提醒',
-      content: `确定删除 ${dataSource.name} 吗`,
+      content: `确定删除 ${dataSource.lhryname} 吗`,
       async onOk() {
-        deleteHouseInfo(dataSource.roomid);        
-        Message.success(`${dataSource.name} 删除成功!`);
+        deleteGreeningInfo(dataSource.ldh);        
+        Message.success(`${dataSource.lhryname} 删除成功!`);
         reset();
       },
     });
@@ -150,12 +150,12 @@ const DialogTable: React.FC = () => {
             {...tableProps}
             onResizeChange={onResizeChange}
             emptyContent={error ? <ExceptionBlock onRefresh={refresh} /> : <EmptyBlock />}
-            primaryKey="email"
+            primaryKey="ldh"
           >
-            <Table.Column title="房主" dataIndex="name" resizable width={columnWidth.name} />
-            <Table.Column title="房间号" dataIndex="roomid" resizable width={columnWidth.email} />
-            <Table.Column title="状态" dataIndex="state" resizable width={columnWidth.phone} />
-            <Table.Column title="电话" dataIndex="phone" resizable width={columnWidth.gender} />
+            <Table.Column title="绿化员职工号" dataIndex="lhryid" resizable width={columnWidth.name} />
+            <Table.Column title="绿化员姓名" dataIndex="lhryname" resizable width={columnWidth.email} />
+            <Table.Column title="负责楼栋" dataIndex="ldh" resizable width={columnWidth.phone} />
+            <Table.Column title="绿化时间" dataIndex="lhsj" resizable width={columnWidth.gender} />
             <Table.Column
               title="操作"
               resizable

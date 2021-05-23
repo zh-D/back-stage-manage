@@ -2,10 +2,10 @@ import { request } from 'ice';
 
 export default {
 
-  async addHouseInfo(values) {
+  async addGreeningInfo(values) {
 
     const data = await request({
-      url: `/api/addhouseinfo`,
+      url: `/api/addgreeninginfo`,
       method: 'post',
       data: values
     })
@@ -13,17 +13,17 @@ export default {
     return data
   },
 
-  async deleteHouseInfo(roomid) {
+  async deleteGreeningInfo(roomid) {
     const data = await request({
-      url: `/api/deletehouseinfo/${roomid}`,
+      url: `/api/deletegreeninginfo/${roomid}`,
       method: 'delete',
     })
     return data;
   },
 
-  async editHouseInfo(dataSource) {
+  async editGreeningInfo(dataSource) {
     const data = await request({
-      url: `/api/edithouseinfo`,
+      url: `/api/editgreeninginfo`,
       method: 'put',
       data: dataSource
     })
@@ -31,9 +31,9 @@ export default {
     return data;
   },
 
-  async getHouseInfo(formData) {
+  async getGreeningInfo(formData) {
     if (!formData.status || formData.status === 'normal') {
-      const data = await request(`/api/gethouseinfo`)
+      const data = await request(`/api/getgreeninginfo`)
       // data.map(item => {
       //   item.state = item.state === 0 ? "业主" : "租客";
       // })
