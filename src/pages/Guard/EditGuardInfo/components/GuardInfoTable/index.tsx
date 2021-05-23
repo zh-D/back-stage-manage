@@ -10,7 +10,7 @@ import { ActionType, OperaitionProps } from './Operation';
 import styles from './index.module.scss';
 
 import { useRequest } from 'ice';
-import houseService from '../../../services/houseInfo';
+import guardService from '../../../services/guard';
 
 
 interface ColumnWidth {
@@ -43,14 +43,14 @@ const DialogTable: React.FC = () => {
     actionType: 'preview',
     actionVisible: false,
   });
-  const { request: getHouseInfo } = useRequest(houseService.getHouseInfo);
-  const { request: deleteHouseInfo } = useRequest(houseService.deleteHouseInfo);
-  const { request: editHouseInfo } = useRequest(houseService.editHouseInfo);
+  const { request: getGuardInfo } = useRequest(guardService.getGuardInfo);
+  const { request: deleteGuardInfo } = useRequest(guardService.deleteGuardInfo);
+  const { request: editGuardInfo } = useRequest(guardService.editGuardInfo);
 
   const getTableData = (
     formData: { status: 'normal' | 'empty' | 'exception' },
   ): Promise<any> => {
-    return getHouseInfo(formData)
+    return getGuardInfo(formData)
   };
   
   const { actionVisible, columnWidth, optCol } = state;
@@ -88,7 +88,7 @@ const DialogTable: React.FC = () => {
     }
 
     if (actionType === 'edit') {
-      editHouseInfo(dataSource)
+      editGuardInfo(dataSource)
       Message.success('编辑成功!');
     }
     
@@ -104,7 +104,7 @@ const DialogTable: React.FC = () => {
       title: '删除提醒',
       content: `确定删除 ${dataSource.name} 吗`,
       async onOk() {
-        deleteHouseInfo(dataSource.roomid);        
+        deleteGuardInfo(dataSource.roomid);        
         Message.success(`${dataSource.name} 删除成功!`);
         reset();
       },
@@ -152,10 +152,10 @@ const DialogTable: React.FC = () => {
             emptyContent={error ? <ExceptionBlock onRefresh={refresh} /> : <EmptyBlock />}
             primaryKey="email"
           >
-            <Table.Column title="房主" dataIndex="name" resizable width={columnWidth.name} />
-            <Table.Column title="房间号" dataIndex="roomid" resizable width={columnWidth.email} />
-            <Table.Column title="状态" dataIndex="state" resizable width={columnWidth.phone} />
-            <Table.Column title="电话" dataIndex="phone" resizable width={columnWidth.gender} />
+            <Table.Column title="保安职工号" dataIndex="abryid" resizable width={columnWidth.name} />
+            <Table.Column title="保安姓名" dataIndex="abryname" resizable width={columnWidth.email} />
+            <Table.Column title="负责楼栋" dataIndex="ldh" resizable width={columnWidth.phone} />
+            <Table.Column title="巡逻时间" dataIndex="xlsj" resizable width={columnWidth.gender} />
             <Table.Column
               title="操作"
               resizable

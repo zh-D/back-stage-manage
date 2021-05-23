@@ -127,5 +127,46 @@ export default {
     res.send(null)
     
   },
-// greening interface end    
+// greening interface end
+  // guard interface start
+  '/api/getguardinfo': (req, res) => {
+    const list = Mock.mock({
+      "data|5-10": [
+        {
+          "abryid|+1": 10,
+          "abryname|+1": [
+            "保安小黄",
+            "保安小聪",
+          ],
+          "ldh|+1": 500,
+          "xlsj|+1": [new Date().getDate(), new Date().getDate() + 1, new Date().getDate() + 2],
+        }
+      ]
+    })
+    res.send(list.data);
+  },
+  '/api/deleteguardinfo/:id': (req,res) => {
+    const { id } = req.params;
+    console.log(req.params);
+    console.log(id);
+    console.log(req.method);
+    res.send(id)
+    
+  },
+
+  '/api/editguardinfo': async (req,res) => {
+    const data =  req.body;
+    console.log(data);
+    console.log(req.method);
+    res.send(String(data.roomid))
+    
+  },
+  '/api/addguardinfo': async (req,res) => {
+    const data =  req.body;
+    console.log(data);
+    console.log(req.method);
+    res.send(null)
+    
+  },
+// guard interface end    
   };

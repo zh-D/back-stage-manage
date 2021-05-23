@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Input, Form, Box, Button, Card, DatePicker, Message, Radio, Upload, Field } from '@alifd/next';
 
 import { useRequest } from 'ice';
-import houseService from '../../../services/houseInfo';
+import guardService from '../../../services/guard';
 
 // import { UploadProps } from '@alifd/next/types/upload';
 // import { Moment } from 'moment';
@@ -16,12 +16,12 @@ const formItemLayout = {
 };
 
 export interface DataSource {
-  name?: string;
-  roomid?: string;
+  abryid?: string;
+  abryname?: string;
   // date?: Moment[];
-  state?: string;
+  ldh?: string;
   // pic?: UploadProps[];
-  phone?: string;
+  xlsj?: string;
 }
 
 export interface BasicFormProps {
@@ -31,13 +31,12 @@ export interface BasicFormProps {
 }
 
 const DEFAULT_DATA: DataSource = {
-  state: '出租',
 };
 
 
 
 const BasicForm: React.SFC<BasicFormProps> = (props): JSX.Element => {
-  const { request:addRequest } = useRequest(houseService.addHouseInfo)
+  const { request:addRequest } = useRequest(guardService.addGuardInfo)
   const DEFAULT_ON_SUBMIT = async (values: BasicFormProps, errors: []): void => {
     if (errors) {
       console.log('errors', errors);
@@ -45,7 +44,7 @@ const BasicForm: React.SFC<BasicFormProps> = (props): JSX.Element => {
     }
     addRequest(values);
     // document.getElementById("reset")?.click()
-    setValue({name:'',roomid:'',phone:''})
+    setValue({abryid:'',abryname:'',ldh:'',xlsj:''})
     Message.success('提交成功');
   };
   const {
@@ -71,23 +70,20 @@ const BasicForm: React.SFC<BasicFormProps> = (props): JSX.Element => {
           labelAlign="top"
           onChange={formChange}
         >
-          <FormItem {...formItemLayout} label="房主名称：" required requiredMessage="必填">
-            <Input placeholder="请输入房主名称" name="name" />
+          <FormItem {...formItemLayout} label="保安职工号：" required requiredMessage="必填">
+            <Input placeholder="请输入保安职工号" name="abryid" />
           </FormItem>
 
-          <FormItem {...formItemLayout} label="房间号：" required requiredMessage="必填">
-            <Input placeholder="请输入房间号" name="roomid" />
+          <FormItem {...formItemLayout} label="保安姓名：" required requiredMessage="必填">
+            <Input placeholder="请输入保安姓名" name="abryname" />
           </FormItem>
 
-          <FormItem {...formItemLayout} label="状态：" >
-            <Radio.Group name="state" aria-labelledby="authority of project">
-              <Radio id="private" value="出租">出租</Radio>
-              <Radio id="internal" value="业主">业主</Radio>
-            </Radio.Group>
+          <FormItem {...formItemLayout} label="ldh：" >
+            <Input placeholder="请输入负责楼栋号" name="ldh" />
           </FormItem>
 
-          <FormItem {...formItemLayout} label="手机号：" >
-            <Input placeholder="请输入手机号" name="phone" />
+          <FormItem {...formItemLayout} label="巡逻时间：" >
+            <Input placeholder="请输入巡逻时间" name="xlsj" />
           </FormItem>
 
           <FormItem colSpan={12}>
