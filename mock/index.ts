@@ -133,13 +133,13 @@ export default {
     const list = Mock.mock({
       "data|5-10": [
         {
-          "abryid|+1": 10,
-          "abryname|+1": [
-            "保安小黄",
-            "保安小聪",
+          "qjyid|+1": 10,
+          "qjyname|+1": [
+            "清洁员小黄",
+            "清洁员小聪",
           ],
           "ldh|+1": 500,
-          "xlsj|+1": [new Date().getDate(), new Date().getDate() + 1, new Date().getDate() + 2],
+          "qjsj|+1": [new Date().getDate(), new Date().getDate() + 1, new Date().getDate() + 2],
         }
       ]
     })
@@ -168,5 +168,95 @@ export default {
     res.send(null)
     
   },
-// guard interface end    
+// guard interface end   
+
+  // cleaning interface start
+  '/api/getcleaninginfo': (req, res) => {
+    const list = Mock.mock({
+      "data|5-10": [
+        {
+          "qjyid|+1": 10,
+          "qjyname|+1": [
+            "保安小黄",
+            "保安小聪",
+          ],
+          "ldh|+1": 500,
+          "qjsj|+1": [new Date().getDate(), new Date().getDate() + 1, new Date().getDate() + 2],
+        }
+      ]
+    })
+    res.send(list.data);
+  },
+  '/api/deletecleaninginfo/:id': (req,res) => {
+    const { id } = req.params;
+    console.log(req.params);
+    console.log(id);
+    console.log(req.method);
+    res.send(id)
+    
+  },
+
+  '/api/editcleaninginfo': async (req,res) => {
+    const data =  req.body;
+    console.log(data);
+    console.log(req.method);
+    res.send(String(data.roomid))
+    
+  },
+  '/api/addcleaninginfo': async (req,res) => {
+    const data =  req.body;
+    console.log(data);
+    console.log(req.method);
+    res.send(null)
+    
+  },
+// cleaning interface end   
+
+
+
+  // pay interface start
+  '/api/getpayinfo': (req, res) => {
+    const list = Mock.mock({
+      "data|5-10": [
+        {
+          "workid|+1": 10,
+          "workname|+1": [
+            "物业员小黄",
+            "物业员小聪",
+          ],
+          "roomid|+1": 500,
+          "sdf|+100": 500,
+          "glf|+150": 600,
+          "ljf|+200": 700,
+          "jfsj|+1": [new Date().getDate(), new Date().getDate() + 1, new Date().getDate() + 2],
+        }
+      ]
+    })
+    res.send(list.data);
+  },
+  '/api/deletepayinfo/:id': (req,res) => {
+    const { id } = req.params;
+    console.log(req.params);
+    console.log(id);
+    console.log(req.method);
+    res.send(id)
+    
+  },
+
+  '/api/editpayinfo': async (req,res) => {
+    const data =  req.body;
+    console.log(data);
+    console.log(req.method);
+    res.send(String(data.roomid))
+    
+  },
+  '/api/addpayinfo': async (req,res) => {
+    const data =  req.body;
+    console.log(data);
+    console.log(req.method);
+    res.send(null)
+    
+  },
+// pay interface end   
   };
+
