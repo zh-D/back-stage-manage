@@ -34,10 +34,13 @@ const Operation: React.ForwardRefRenderFunction<OperationRef, OperaitionProps> =
     field.reset();
     if (dataSource) {
       const newValues = {
-        name: dataSource.name,
+        workid: dataSource.workid,
+        workname: dataSource.workname,
         roomid: dataSource.roomid,
-        state: dataSource.state,
-        phone: dataSource.phone,
+        sdf: dataSource.sdf,
+        glf: dataSource.glf,
+        ljf: dataSource.ljf,
+        jfsj: dataSource.jfsj,
       };
       field.setValues(newValues);
     }
@@ -48,14 +51,11 @@ const Operation: React.ForwardRefRenderFunction<OperationRef, OperaitionProps> =
       return {
         getValues(callback: (vals: Record<string, unknown>) => void) {
           field.validate((errors, values): void => {
-            const { name, phone } = values
-            if (!name) {
-              Message.error("姓名不能为空！");
-              return
-            }
-            if (!phone) {
-              Message.error("电话不能为空！");
-              return
+            for (let key in values) {
+              if (!values[key]) {
+                Message.error("信息不完整！");
+                return;
+              }
             }
             console.log(values);
             
@@ -78,47 +78,69 @@ const Operation: React.ForwardRefRenderFunction<OperationRef, OperaitionProps> =
         {...formItemLayout}
       >
         <FormItem
-          label="房主:"
+          label="物业人员职工号:"
           required
           requiredMessage="必填"
         >
           <Input
-            {...field.init('name')}
-            placeholder="请输入姓名."
+            {...field.init('workid')}
+            placeholder="请输入物业人员职工号."
           />
         </FormItem>
         <FormItem
-          label="房间号:"
+          label="物业人员姓名:"
+          required={!isPreview}
+          requiredMessage="必填"
+        >
+          <Input
+            {...field.init('workname')}
+            placeholder='请输入物业人员姓名'
+          />
+        </FormItem>
+        <FormItem
+          label="房间:"
           required={!isPreview}
           requiredMessage="必填"
         >
           <Input
             {...field.init('roomid')}
-            value = {dataSource.roomid}
-            style = {{backgroundColor:"#ababab"}}
+            placeholder='请输入房间号'
           />
         </FormItem>
         <FormItem
-          label="状态:"
-          required={!isPreview}
-          requiredMessage="必填"
-        >
-          <Select
-            name="state"
-            dataSource={[
-              { value: '业主', label: '业主' },
-              { value: '租客', label: '租客' },
-            ]}
-          />
-        </FormItem>
-        <FormItem
-          label="手机号:"
-          format="tel"
+          label="水电费:"
           required={!isPreview}
           requiredMessage="必填"
         >
           <Input
-            {...field.init('phone')}
+            {...field.init('sdf')}
+          />
+        </FormItem>
+        <FormItem
+          label="管理费:"
+          required={!isPreview}
+          requiredMessage="必填"
+        >
+          <Input
+            {...field.init('glf')}
+          />
+        </FormItem>
+        <FormItem
+          label="垃圾费:"
+          required={!isPreview}
+          requiredMessage="必填"
+        >
+          <Input
+            {...field.init('ljf')}
+          />
+        </FormItem>
+        <FormItem
+          label="交费时间:"
+          required={!isPreview}
+          requiredMessage="必填"
+        >
+          <Input
+            {...field.init('jfsj')}
           />
         </FormItem>
       </Form>
