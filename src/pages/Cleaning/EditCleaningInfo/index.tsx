@@ -10,7 +10,7 @@ const FusionDialogTable = () => {
     <ResponsiveGrid gap={20}>
       <Cell colSpan={12}>
         <PageHeader
-          title="房屋资料"
+          title="清洁资料"
         />
       </Cell>
 
