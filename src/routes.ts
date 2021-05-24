@@ -16,11 +16,35 @@ import AddCleaningInfo from '@/pages/Cleaning/AddCleaningInfo';
 import EditPayInfo from '@/pages/Pay/EditPayInfo';
 import AddPayInfo from '@/pages/Pay/AddPayInfo';
 
+import LoginWrapper from '@/components/LoginWrapper';
+import PageWrapper from '@/components/PageWrapper';
+
 
 const routerConfig: IRouterConfig[] = [
   {
+    path: '/user',
+    component: UserLayout,
+    wrappers: [LoginWrapper],
+    children: [
+      {
+        path: '/login',
+        component: Login,
+      },
+      {
+        path: '/register',
+        component: Register,
+      },
+      {
+        exact: true,
+        path: '/',
+        redirect: '/user/login',
+      },
+    ],
+  },
+  {
     path: '/',
     component: BasicLayout,
+    wrappers: [PageWrapper],
     children: [
       {
         path: '/house/houseinfo',
@@ -73,24 +97,6 @@ const routerConfig: IRouterConfig[] = [
       {
         path: '/',
         redirect: '/house/houseinfo',
-      },
-    ],
-  },
-  {
-    path: '/user',
-    component: UserLayout,
-    children: [
-      {
-        path: '/login',
-        component: Login,
-      },
-      {
-        path: '/register',
-        component: Register,
-      },
-      {
-        path: '/',
-        redirect: '/user/login',
       },
     ],
   },
