@@ -1,9 +1,10 @@
 import { request } from 'ice';
+import { timestampToTime, timeTotimestamp } from '../../../utils/timeUtils';
 
 export default {
 
   async addCleaningInfo(values) {
-
+    values.qjsj = timeTotimestamp(values.qjsj);
     const data = await request({
       url: `/api/addcleaninginfo`,
       method: 'post',
@@ -22,6 +23,7 @@ export default {
   },
 
   async editCleaningInfo(dataSource) {
+    dataSource.qjsj = timeTotimestamp(dataSource.qjsj);
     const data = await request({
       url: `/api/editcleaninginfo`,
       method: 'put',
@@ -34,9 +36,9 @@ export default {
   async getCleaningInfo(formData) {
     if (!formData.status || formData.status === 'normal') {
       const data = await request(`/api/getcleaninginfo`)
-      // data.map(item => {
-      //   item.state = item.state === 0 ? "业主" : "租客";
-      // })
+      data.map(item => {
+        item.qjsj = timestampToTime(item.qjsj)
+      })
 
       return ({
         total: data.length,
