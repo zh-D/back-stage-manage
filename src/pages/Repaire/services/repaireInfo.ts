@@ -1,9 +1,10 @@
 import { request } from 'ice';
+import { timestampToTime, timeTotimestamp } from '../../../utils/timeUtils';
 
 export default {
 
   async addRepaireInfo(values) {
-
+    values.wxsj = timeTotimestamp(values.wxsj);
     const data = await request({
       url: `/api/addrepaireinfo`,
       method: 'post',
@@ -22,6 +23,7 @@ export default {
   },
 
   async editRepaireInfo(dataSource) {
+    dataSource.wxsj = timeTotimestamp(dataSource.wxsj);
     const data = await request({
       url: `/api/editrepaireinfo`,
       method: 'put',
@@ -34,9 +36,9 @@ export default {
   async getRepaireInfo(formData) {
     if (!formData.status || formData.status === 'normal') {
       const data = await request(`/api/getrepaireinfo`)
-      // data.map(item => {
-      //   item.state = item.state === 0 ? "业主" : "租客";
-      // })
+      data.map(item => {
+        item.wxsj = timestampToTime(item.wxsj);
+      })
 
       return ({
         total: data.length,
