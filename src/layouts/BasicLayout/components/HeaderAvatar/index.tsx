@@ -2,6 +2,8 @@ import React from 'react';
 import { Avatar, Overlay, Menu, Icon } from '@alifd/next';
 import styles from './index.module.scss';
 
+import store from '@/store';
+
 const { Item } = Menu;
 const { Popup } = Overlay;
 
@@ -27,6 +29,7 @@ const UserProfile = ({ name, avatar, mail }) => {
 
 const HeaderAvatar = (props: Props) => {
   const { name, avatar } = props;
+  const [userState, userDispatchers] = store.useModel('user');
   return (
     <Popup
       trigger={
@@ -42,7 +45,7 @@ const HeaderAvatar = (props: Props) => {
         <Menu className={styles.menu}>
           <Item><Icon size="small" type="account" />个人设置</Item>
           <Item><Icon size="small" type="set" />系统设置</Item>
-          <Item><Icon size="small" type="exit" />退出</Item>
+          <Item onClick={() => { userDispatchers.logout() }}><Icon size="small" type="exit" />退出</Item>
         </Menu>
       </div>
     </Popup>
