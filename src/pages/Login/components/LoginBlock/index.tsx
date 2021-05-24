@@ -4,6 +4,8 @@ import { Input, Message, Form, Divider, Checkbox, Icon } from '@alifd/next';
 import { useInterval } from './utils';
 import styles from './index.module.scss';
 
+import store from '@/store';
+
 const { Item } = Form;
 
 export interface IDataSource {
@@ -38,6 +40,8 @@ const LoginBlock: React.FunctionComponent<LoginProps> = (
   const [isPhone, checkPhone] = useState(false);
   const [second, setSecond] = useState(59);
 
+  const [userState, userDispatchers] = store.useModel('user');
+
   useInterval(
     () => {
       setSecond(second - 1);
@@ -61,13 +65,17 @@ const LoginBlock: React.FunctionComponent<LoginProps> = (
     checkRunning(true);
   };
 
-  const handleSubmit = (values: IDataSource, errors: []) => {
+  const handleSubmit = async (values: IDataSource, errors: []) => {
     if (errors) {
       console.log('errors', errors);
       return;
     }
-    console.log('values:', values);
-    Message.success('登录成功');
+    const isLoginSuccess = await userDispatchers.login(values);
+    if (isLoginSuccess) {
+      Message.success('登录成功');
+    } else {
+      Message.error('登录失败！');
+    }
   };
 
   const phoneForm = (
