@@ -54,7 +54,7 @@ export default {
             "修理工小聪",
           ],
           "roomid|+1":100,
-          "wxsj|+1": [new Date().getDate(), new Date().getDate() + 1, new Date().getDate() + 2],
+          "wxsj|+1": [new Date().getTime(), new Date().getTime() + 1, new Date().getTime() + 2],
           "wxwp|+1": ["电视", "电脑", "旧冰箱", "旧手机", "洗衣机"],
           "wxje|+1": [100, 130, 120, 156, 178] 
         }
@@ -98,7 +98,7 @@ export default {
             "绿化员小聪",
           ],
           "ldh|+1": 500,
-          "lhsj|+1": [new Date().getDate(), new Date().getDate() + 1, new Date().getDate() + 2],
+          "lhsj|+1": [new Date().getTime(), new Date().getTime() + 1, new Date().getTime() + 2],
         }
       ]
     })
@@ -133,13 +133,13 @@ export default {
     const list = Mock.mock({
       "data|5-10": [
         {
-          "qjyid|+1": 10,
-          "qjyname|+1": [
-            "清洁员小黄",
-            "清洁员小聪",
+          "abryid|+1": 10,
+          "abryname|+1": [
+            "保安小黄",
+            "保安小聪",
           ],
           "ldh|+1": 500,
-          "qjsj|+1": [new Date().getDate(), new Date().getDate() + 1, new Date().getDate() + 2],
+          "xlsj|+1": [new Date().getTime(), new Date().getTime() + 1, new Date().getTime() + 2],
         }
       ]
     })
@@ -181,7 +181,7 @@ export default {
             "保安小聪",
           ],
           "ldh|+1": 500,
-          "qjsj|+1": [new Date().getDate(), new Date().getDate() + 1, new Date().getDate() + 2],
+          "qjsj|+1": [new Date().getTime(), new Date().getTime() + 1, new Date().getTime() + 2],
         }
       ]
     })
@@ -228,7 +228,7 @@ export default {
           "sdf|+100": 500,
           "glf|+150": 600,
           "ljf|+200": 700,
-          "jfsj|+1": [new Date().getDate(), new Date().getDate() + 1, new Date().getDate() + 2],
+          "jfsj|+1": [new Date().getTime(), new Date().getTime() + 1, new Date().getTime() + 2],
         }
       ]
     })
