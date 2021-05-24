@@ -1,9 +1,10 @@
 import { request } from 'ice';
+import { timestampToTime, timeTotimestamp } from '../../../utils/timeUtils';
 
 export default {
 
   async addPayInfo(values) {
-
+    values.jfsj = timeTotimestamp(values.jfsj);
     const data = await request({
       url: `/api/addpayinfo`,
       method: 'post',
@@ -22,6 +23,7 @@ export default {
   },
 
   async editPayInfo(dataSource) {
+    dataSource.jfsj = timeTotimestamp(dataSource.jfsj);
     const data = await request({
       url: `/api/editpayinfo`,
       method: 'put',
@@ -34,9 +36,9 @@ export default {
   async getPayInfo(formData) {
     if (!formData.status || formData.status === 'normal') {
       const data = await request(`/api/getpayinfo`)
-      // data.map(item => {
-      //   item.state = item.state === 0 ? "业主" : "租客";
-      // })
+      data.map(item => {
+        item.jfsj = timestampToTime(item.jfsj)
+      })
 
       return ({
         total: data.length,
