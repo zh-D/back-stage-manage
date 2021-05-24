@@ -177,8 +177,8 @@ export default {
         {
           "qjyid|+1": 10,
           "qjyname|+1": [
-            "保安小黄",
-            "保安小聪",
+            "清洁员小黄",
+            "清洁员小聪",
           ],
           "ldh|+1": 500,
           "qjsj|+1": [new Date().getTime(), new Date().getTime() + 1, new Date().getTime() + 2],
