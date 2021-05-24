@@ -1,9 +1,10 @@
 import { request } from 'ice';
+import { timestampToTime, timeTotimestamp } from '../../../utils/timeUtils';
 
 export default {
 
   async addGuardInfo(values) {
-
+    values.xlsj = timeTotimestamp(values.xlsj)
     const data = await request({
       url: `/api/addguardinfo`,
       method: 'post',
@@ -22,6 +23,8 @@ export default {
   },
 
   async editGuardInfo(dataSource) {
+    dataSource.xlsj = timeTotimestamp(dataSource.xlsj)
+    
     const data = await request({
       url: `/api/editguardinfo`,
       method: 'put',
@@ -34,9 +37,14 @@ export default {
   async getGuardInfo(formData) {
     if (!formData.status || formData.status === 'normal') {
       const data = await request(`/api/getguardinfo`)
-      // data.map(item => {
-      //   item.state = item.state === 0 ? "业主" : "租客";
-      // })
+      console.log(data);
+      
+      data.map(item => {
+        item.xlsj = timestampToTime(item.xlsj)
+      })
+
+      console.log(data);
+      
 
       return ({
         total: data.length,

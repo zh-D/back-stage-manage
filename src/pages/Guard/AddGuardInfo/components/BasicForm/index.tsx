@@ -78,7 +78,7 @@ const BasicForm: React.SFC<BasicFormProps> = (props): JSX.Element => {
             <Input placeholder="请输入保安姓名" name="abryname" />
           </FormItem>
 
-          <FormItem {...formItemLayout} label="ldh：" >
+          <FormItem {...formItemLayout} label="楼栋号：" >
             <Input placeholder="请输入负责楼栋号" name="ldh" />
           </FormItem>
 

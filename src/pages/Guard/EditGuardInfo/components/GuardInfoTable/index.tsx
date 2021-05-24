@@ -102,10 +102,10 @@ const DialogTable: React.FC = () => {
     }
     Dialog.confirm({
       title: '删除提醒',
-      content: `确定删除 ${dataSource.name} 吗`,
+      content: `确定删除 ${dataSource.abryname} 吗`,
       async onOk() {
-        deleteGuardInfo(dataSource.roomid);        
-        Message.success(`${dataSource.name} 删除成功!`);
+        deleteGuardInfo(dataSource.abryid);        
+        Message.success(`${dataSource.abryname} 删除成功!`);
         reset();
       },
     });
