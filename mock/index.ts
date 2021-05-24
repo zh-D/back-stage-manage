@@ -1,5 +1,21 @@
 import * as Mock from 'mockjs';
 export default {
+
+  // login api
+  '/api/user': (req, res) => {
+    const data =  req.body;
+    console.log(data);
+    const { name, password } = data;
+    if ( name === "admin" && password === '123456' ) {
+      console.log('登录成功');
+      res.send({ login: true });
+    } else {
+      console.log('登录失败');
+      res.send({ login: false });
+    }
+    
+  },
+
   // house interface start
     '/api/gethouseinfo': (req, res) => {
       const list = Mock.mock({
