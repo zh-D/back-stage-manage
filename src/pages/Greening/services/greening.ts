@@ -1,9 +1,10 @@
 import { request } from 'ice';
+import { timestampToTime, timeTotimestamp } from '../../../utils/timeUtils';
 
 export default {
 
   async addGreeningInfo(values) {
-
+    values.lhsj = timeTotimestamp(values.lhsj);
     const data = await request({
       url: `/api/addgreeninginfo`,
       method: 'post',
@@ -22,6 +23,7 @@ export default {
   },
 
   async editGreeningInfo(dataSource) {
+    dataSource.lhsj = timeTotimestamp(dataSource.lhsj);
     const data = await request({
       url: `/api/editgreeninginfo`,
       method: 'put',
@@ -34,9 +36,9 @@ export default {
   async getGreeningInfo(formData) {
     if (!formData.status || formData.status === 'normal') {
       const data = await request(`/api/getgreeninginfo`)
-      // data.map(item => {
-      //   item.state = item.state === 0 ? "业主" : "租客";
-      // })
+      data.map(item => {
+        item.lhsj = timestampToTime(item.lhsj)
+      })
 
       return ({
         total: data.length,

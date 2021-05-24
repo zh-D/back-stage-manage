@@ -104,7 +104,7 @@ const DialogTable: React.FC = () => {
       title: '删除提醒',
       content: `确定删除 ${dataSource.lhryname} 吗`,
       async onOk() {
-        deleteGreeningInfo(dataSource.ldh);        
+        deleteGreeningInfo(dataSource.lhryid);        
         Message.success(`${dataSource.lhryname} 删除成功!`);
         reset();
       },
