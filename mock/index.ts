@@ -1,18 +1,43 @@
 import * as Mock from 'mockjs';
 export default {
 
+  '/api/addcomplain': async (req,res) => {
+    const data =  req.body;
+    console.log(data);
+    console.log(req.method);
+    res.send(String(data.roomid));
+  },
+
+  '/api/getcomplain': async (req,res) => {
+    const list = Mock.mock({
+      "data|5-10": [
+        {
+          "text|+1": [
+            "Hello",
+            "Mock.js",
+            "!"
+          ],
+        }
+      ]
+    })
+    console.log(list.data);
+    
+    res.send(list.data);
+  },
+
   // login api
   '/api/user': (req, res) => {
     const data =  req.body;
     console.log(data);
     const { name, password } = data;
-    if ( name === "admin" && password === '123456' ) {
-      console.log('登录成功');
-      res.send({ login: true });
-    } else {
-      console.log('登录失败');
-      res.send({ login: false });
+    if (password === '123456' ) {
+      console.log('guest 登录成功');
+      res.send({ login: true, role: name });
+      return;
     }
+
+    console.log('登录失败');
+    res.send({ login: false, role: 'none' });
     
   },
 
@@ -241,7 +266,7 @@ export default {
             "物业员小聪",
           ],
           "roomid|+1": 500,
-          "sdf|+100": 500,
+          "sdf|-1000": 500,
           "glf|+150": 600,
           "ljf|+200": 700,
           "jfsj|+1": [new Date().getTime(), new Date().getTime() + 1, new Date().getTime() + 2],
