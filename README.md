@@ -1,61 +1,10 @@
+### 物业管理系统
 
-## Fusion Design Pro - TS
+第一次使用 ice 框架来写东西，用来做软件工程的课程设计戳戳有余，答辩已经通过了。但是这个项目不打算继续写了，原因是题目选的不是很有趣，项目实现起来全是增删改查，实际写的增删改查接口写了将近三十个，继续写还是增删改查。。。太枯燥了。
 
-> 使用 TypeScript，包含大量 UI 区块，比如图表、表单等。
+### 启动方式
 
-## 使用
+npm install + npm start
 
-```bash
-# 安装依赖
-$ npm install
+npm start 之后是一个登录页面，登录密码是 123456，用户名可以是 admin，这会进入 admin 的页面，可以是其它任何用户名，这会进入 guest 页面，如果用房间号登录能显示一些房间相关的信息。点右上角的头像可以选择退出回到登录页面。
 
-# 启动服务
-$ npm start  # visit http://localhost:3333
-```
-
-[More docs](https://ice.work/docs/guide/about).
-
-## 目录
-
-```md
-├── build/                         # 构建产物
-├── mock/                          # 本地模拟数据
-│   ├── index.[j,t]s
-├── public/
-│   ├── index.html                 # 应用入口 HTML
-│   └── favicon.png                # Favicon
-├── src/                           # 源码路径
-│   ├── components/                # 自定义业务组件
-│   │   └── Guide/
-│   │       ├── index.[j,t]sx
-│   │       ├── index.module.scss
-│   ├── layouts/                   # 布局组件
-│   │   └── BasicLayout/
-│   │       ├── index.[j,t]sx
-│   │       └── index.module.scss
-│   ├── pages/                     # 页面
-│   │   └── Home/                  # home 页面，约定路由转成小写
-│   │       ├── components/        # 页面级自定义业务组件
-│   │       ├── models.[j,t]sx     # 页面级数据状态
-│   │       ├── index.[j,t]sx      # 页面入口
-│   │       └── index.module.scss  # 页面样式文件
-│   ├── configs/                   # [可选] 配置文件
-│   │   └── menu.[j,t]s            # [可选] 菜单配置
-│   ├── models/                    # [可选] 应用级数据状态
-│   │   └── user.[j,t]s
-│   ├── utils/                     # [可选] 工具库
-│   ├── global.scss                # 全局样式
-│   ├── routes.[j,t]s              # 路由配置
-│   └── app.[j,t]s[x]              # 应用入口脚本
-├── build.json                     # 工程配置
-├── README.md
-├── package.json
-├── .editorconfig
-├── .eslintignore
-├── .eslintrc.[j,t]s
-├── .gitignore
-├── .stylelintignore
-├── .stylelintrc.[j,t]s
-├── .gitignore
-└── [j,t]sconfig.json
-```
