@@ -1,8 +1,13 @@
 import { IRouterConfig } from 'ice';
+// User/Login
 import UserLayout from '@/layouts/UserLayout';
+import LoginWrapper from '@/components/LoginWrapper';
 import Login from '@/pages/Login';
 import Register from '@/pages/Register';
-import BasicLayout from '@/layouts/BasicLayout';
+// Admin
+import AdminLayout from '@/layouts/AdminLayout';
+import AdminWrapper from '@/components/AdminWrapper';
+import Building from '@/pages/Building';
 import EditHouseInfo from '@/pages/House/EditHouseInfo';
 import AddHouseInfo from '@/pages/House/AddHouseInfo';
 import EditRepaireInfo from '@/pages/Repaire/EditRepaireInfo';
@@ -15,9 +20,17 @@ import EditCleaningInfo from '@/pages/Cleaning/EditCleaningInfo';
 import AddCleaningInfo from '@/pages/Cleaning/AddCleaningInfo';
 import EditPayInfo from '@/pages/Pay/EditPayInfo';
 import AddPayInfo from '@/pages/Pay/AddPayInfo';
-
-import LoginWrapper from '@/components/LoginWrapper';
-import PageWrapper from '@/components/PageWrapper';
+import GetPayInfo from '@/pages/Pay/GetPayinfo';
+import Remindinfo from '@/pages/Remindinfo/remind';
+import DocuMan from '@/pages/DocuMan';
+// Guest
+import GuestLayout from '@/layouts/GuestLayout';
+import GuestWrapper from '@/components/GuestWrapper';
+import Complain from '@/pages/Complain';
+import GuestPay from '@/pages/GuestPay';
+import Priceinfo from '@/pages/Priceinfo';
+import Meeting from '@/pages/Meeting';
+import UserOwe from '@/pages/UserOwe';
 
 
 const routerConfig: IRouterConfig[] = [
@@ -42,10 +55,14 @@ const routerConfig: IRouterConfig[] = [
     ],
   },
   {
-    path: '/',
-    component: BasicLayout,
-    wrappers: [PageWrapper],
+    path: '/admin',
+    component: AdminLayout,
+    wrappers: [AdminWrapper],
     children: [
+      {
+        path: '/building',
+        component: Building,
+      },
       {
         path: '/house/houseinfo',
         component: EditHouseInfo,
@@ -95,10 +112,49 @@ const routerConfig: IRouterConfig[] = [
         component: AddPayInfo,
       },
       {
-        path: '/',
-        redirect: '/house/houseinfo',
+        path: '/paymanagement/getpayinfo',
+        component: GetPayInfo,
+      },
+      {
+        path: '/remindinfo',
+        component: Remindinfo,
+      },
+      {
+        path: '/documan',
+        component: DocuMan,
       },
     ],
+  },
+  {
+    path: '/guest',
+    component: GuestLayout,
+    wrappers: [GuestWrapper],
+    children: [
+      {
+        path: '/complain',
+        component: Complain,
+      },
+      {
+        path: '/guestPay',
+        component: GuestPay,
+      },
+      {
+        path: '/priceinfo',
+        component: Priceinfo,
+      },
+      {
+        path: '/meeting',
+        component: Meeting,
+      },
+      {
+        path: '/userowe',
+        component: UserOwe,
+      },
+    ],
+  },
+  {
+    path: '/',
+    redirect: '/user/login',
   },
 ];
 export default routerConfig;
