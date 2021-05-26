@@ -8,7 +8,7 @@ const LoginWrapper = (WrappedComponent) => {
     return (
       <>
         {
-          userState.login ? <WrappedComponent {...props} /> : <Redirect to="/user/login" />
+          userState.login ? (userState.role === 'admin' ? <WrappedComponent {...props} /> : <Redirect to="/guest/house/houseinfo"/>) : <Redirect to="/user/login" />
         }
       </>
     )

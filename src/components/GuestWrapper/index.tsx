@@ -2,13 +2,13 @@ import React from 'react';
 import { Redirect } from 'ice';
 import store from '@/store';
 
-const LoginWrapper = (WrappedComponent) => {
+const GuestWrapper = (WrappedComponent) => {
   const Wrapped = (props) => {
     const [userState, userDispatchers] = store.useModel('user');
     return (
       <>
         {
-          userState.login ? <Redirect to="/admin/house/houseinfo" /> : <WrappedComponent {...props} />
+          userState.login ? (userState.role !== 'admin' ? <WrappedComponent {...props} /> : <Redirect to="/admin/house/houseinfo"/>) : <Redirect to="/user/login" />
         }
       </>
     )
@@ -17,4 +17,4 @@ const LoginWrapper = (WrappedComponent) => {
   return Wrapped;
 }
 
-export default LoginWrapper;
+export default GuestWrapper;
