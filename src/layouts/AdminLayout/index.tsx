@@ -76,7 +76,7 @@ export default function BasicLayout({
       >
         <Shell.Branding>
           <Logo
-            image="https://img.alicdn.com/tfs/TB1.ZBecq67gK0jSZFHXXa9jVXa-904-826.png"
+            image=""
             text="Logo"
           />
         </Shell.Branding>

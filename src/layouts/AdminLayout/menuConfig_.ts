@@ -2,17 +2,22 @@ const headerMenuConfig = [];
 
 const asideMenuConfig = [
   {
+    name: '楼盘资料',
+    path: '/admin/building',
+    icon: 'chart-pie',
+  },
+  {
     name: '房屋资料',
     path: '/',
     icon: 'chart-pie',
     children: [
       {
         name: '房屋资料管理',
-        path: '/house/houseinfo',
+        path: '/admin/house/houseinfo',
       },
       {
         name: '添加房屋资料',
-        path: '/house/addhouseinfo',
+        path: '/admin/house/addhouseinfo',
       },
     ]
   },
@@ -23,11 +28,11 @@ const asideMenuConfig = [
     children: [
       {
         name: '维修信息管理',
-        path: '/repaire/repaireinfo',
+        path: '/admin/repaire/repaireinfo',
       },
       {
         name: '添加维修信息',
-        path: '/repaire/addrepaireinfo',
+        path: '/admin/repaire/addrepaireinfo',
       },
     ]
   },
@@ -38,11 +43,11 @@ const asideMenuConfig = [
     children: [
       {
         name: '绿化信息管理',
-        path: '/greening/greeninginfo',
+        path: '/admin/greening/greeninginfo',
       },
       {
         name: '添加绿化信息',
-        path: '/greening/addgreeninginfo',
+        path: '/admin/greening/addgreeninginfo',
       },
     ]
   },
@@ -53,11 +58,11 @@ const asideMenuConfig = [
     children: [
       {
         name: '安保信息管理',
-        path: '/guard/guardinfo',
+        path: '/admin/guard/guardinfo',
       },
       {
         name: '添加安保信息',
-        path: '/guard/addguardinfo',
+        path: '/admin/guard/addguardinfo',
       },
     ]
   },
@@ -68,26 +73,26 @@ const asideMenuConfig = [
     children: [
       {
         name: '清洁信息管理',
-        path: '/cleaning/cleaninginfo',
+        path: '/admin/cleaning/cleaninginfo',
       },
       {
         name: '添加清洁信息',
-        path: '/cleaning/addcleaninginfo',
+        path: '/admin/cleaning/addcleaninginfo',
       },
     ]
   },
   {
     name: '收费管理',
-    path: '/pay',
+    path: '/',
     icon: 'set',
     children: [
       {
         name: '收费信息管理',
-        path: '/paymanagement/payinfo',
+        path: '/admin/paymanagement/payinfo',
       },
       {
         name: '添加收费信息',
-        path: '/paymanagement/addpayinfo',
+        path: '/admin/paymanagement/addpayinfo',
       },
     ]
   },
