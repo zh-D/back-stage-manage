@@ -29,11 +29,11 @@ interface DialogState {
 }
 
 const defaultColumnWidth: ColumnWidth = {
-  name: 140,
+  name: 500,
   email: 500,
   phone: 500,
-  gender: 140,
-  operation: 150,
+  gender: 500,
+  operation: 500,
 };
 
 const DialogTable: React.FC = () => {
@@ -104,7 +104,7 @@ const DialogTable: React.FC = () => {
       title: '删除提醒',
       content: `确定删除?`,
       async onOk() {
-        deletePayInfo(dataSource.roomid);        
+        deletePayInfo(dataSource.roomid);  
         Message.success(`删除成功!`);
         reset();
       },

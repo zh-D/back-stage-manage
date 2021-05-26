@@ -29,11 +29,11 @@ interface DialogState {
 }
 
 const defaultColumnWidth: ColumnWidth = {
-  name: 140,
+  name: 500,
   email: 500,
   phone: 500,
-  gender: 140,
-  operation: 150,
+  gender: 500,
+  operation: 500,
 };
 
 const DialogTable: React.FC = () => {
@@ -46,7 +46,6 @@ const DialogTable: React.FC = () => {
   const { request: getRepaireInfo } = useRequest(houseService.getRepaireInfo);
   const { request: deleteRepaireInfo } = useRequest(houseService.deleteRepaireInfo);
   const { request: editRepaireInfo } = useRequest(houseService.editRepaireInfo);
-
   const getTableData = (
     formData: { status: 'normal' | 'empty' | 'exception' },
   ): Promise<any> => {
@@ -104,7 +103,7 @@ const DialogTable: React.FC = () => {
       title: '删除提醒',
       content: `确定删除 ${dataSource.wxryname} 吗`,
       async onOk() {
-        deleteRepaireInfo(dataSource.wxid);        
+        deleteRepaireInfo(dataSource.wxid);       
         Message.success(`${dataSource.wxryname} 删除成功!`);
         reset();
       },

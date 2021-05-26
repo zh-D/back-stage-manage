@@ -29,11 +29,11 @@ interface DialogState {
 }
 
 const defaultColumnWidth: ColumnWidth = {
-  name: 140,
+  name: 500,
   email: 500,
   phone: 500,
-  gender: 140,
-  operation: 150,
+  gender: 500,
+  operation: 500,
 };
 
 const DialogTable: React.FC = () => {
